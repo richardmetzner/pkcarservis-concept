@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex">
   <!-- Titulek a popis, které Google ukazuje ve výsledcích (lokální SEO) -->
   <title>Autoservis Praha 4 – Krč, Pankrác | PK Car Servis</title>
-  <meta name="description" content="Auto opravené, přezuté a připravené na STK bez zbytečného čekání – autoservis Na Strži v Praze 4 (Krč, Pankrác), volejte 602 344 424.">
+  <meta name="description" content="Servis, příprava na STK, pneuservis i odtah v Praze 4 Na Strži (Krč, Pankrác) – auto v pořádku a vy v klidu, volejte 602 344 424.">
   <!-- Barva horní lišty prohlížeče na mobilu -->
   <meta name="theme-color" content="#0a1f3c">
 
@@ -167,12 +167,15 @@
       transform-origin: left;
     }
     .hero h1 {
-      max-width: 22ch;
-      font-size: clamp(2rem, 7vw, 3.4rem);
+      font-size: clamp(2.4rem, 9vw, 4.2rem);
       font-weight: 800;
       letter-spacing: -.02em;
     }
-    .hero h1 .hl { color: #8fc1ff; }
+    /* Druhá půlka nadpisu vždy na novém řádku a světlejší */
+    .hero h1 .hl {
+      display: block;
+      color: #8fc1ff;
+    }
     .hero-text {
       max-width: 36rem;
       margin-top: 16px;
@@ -467,7 +470,7 @@
       /* --- Úvod: nadpis naskočí slovo po slovu --- */
       .eyebrow,
       .hero-text { animation: rise .7s var(--ease) both; }
-      .hero-text { animation-delay: .8s; }
+      .hero-text { animation-delay: .5s; }
       .eyebrow::before { animation: grow .8s var(--ease) .2s both; }
 
       .hero h1 .w {
@@ -625,20 +628,14 @@
         <p class="eyebrow">Autoservis Praha 4 – Krč, Pankrác</p>
         <!-- Každé slovo je zvlášť, aby mohlo naskočit; --i je jeho pořadí -->
         <h1>
-          <span class="w" style="--i:0">Vaše</span>
-          <span class="w" style="--i:1">auto</span>
-          <span class="w" style="--i:2">opravené,</span>
-          <span class="w" style="--i:3">přezuté</span>
-          <span class="w" style="--i:4">a&nbsp;připravené</span>
-          <span class="w" style="--i:5">na</span>
-          <span class="w" style="--i:6">STK.</span>
+          <span class="w" style="--i:0">Auto</span>
+          <span class="w" style="--i:1">v&nbsp;pořádku,</span>
           <span class="hl">
-            <span class="w" style="--i:7">Bez</span>
-            <span class="w" style="--i:8">zbytečného</span>
-            <span class="w" style="--i:9">čekání.</span>
+            <span class="w" style="--i:2">vy</span>
+            <span class="w" style="--i:3">v&nbsp;klidu.</span>
           </span>
         </h1>
-        <p class="hero-text">Servis, pneuservis, klimatizace i&nbsp;odtah na jednom místě. Stačí zavolat.</p>
+        <p class="hero-text">Servis, příprava na STK, pneuservis i&nbsp;odtah na jednom místě. Stačí zavolat.</p>
       </div>
       <div class="road" aria-hidden="true"></div>
     </section>
