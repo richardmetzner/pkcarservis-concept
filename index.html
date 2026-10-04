@@ -8,513 +8,215 @@
   <!-- Titulek a popis, které Google ukazuje ve výsledcích (lokální SEO) -->
   <title>Autoservis Praha 4 – Krč, Pankrác | PK Car Servis</title>
   <meta name="description" content="Servis, příprava na STK, pneuservis i odtah v Praze 4 Na Strži (Krč, Pankrác) – auto v pořádku a vy v klidu, volejte 602 344 424.">
-  <!-- Barva horní lišty prohlížeče na mobilu -->
-  <meta name="theme-color" content="#081a33">
-
-  <!-- Písmo Inter (Google Fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
-
-  <!-- Značka „JavaScript běží": jen pak se sekce schovají a plynule objeví -->
-  <script>document.documentElement.classList.add('js');</script>
-
+  <meta name="theme-color" content="#ffffff">
   <style>
-    /* ========== 1. Barvy, písmo a základ ========== */
+    /* ========== 1. Barvy, písmo a základ ==========
+       Jen černá a bílá. Písmo je systémové (na iPhonu a Macu SF Pro),
+       nadpisy jsou tučné a těsné. */
     :root {
-      --navy: #081a33;            /* tmavá modrá – hlavička, úvod, kontakt */
-      --ink: #0b1a30;             /* hlavní text na bílé */
-      --muted: #5b6880;           /* vedlejší text */
-      --hair: #e3e8ef;            /* tenké dělicí čáry */
-      --paper: #ffffff;
-      --paper-2: #f5f7fa;         /* světle šedé pozadí sekce */
-      --on-navy: #c9d4e4;         /* text na tmavé modré */
-      --on-navy-muted: #9fb1ca;   /* vedlejší text na tmavé modré */
-      --on-navy-hair: rgba(255, 255, 255, .12);
-      --accent: #ffb400;          /* jediná výrazná barva – patří jen tlačítku Zavolat */
-      --accent-hover: #ffc533;
-      --ease: cubic-bezier(.16, 1, .3, 1);   /* rychlý start, dlouhé jemné dobrzdění */
+      --bg: #ffffff;
+      --text: #000000;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; }
-
+    html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: var(--ink);
-      background: var(--paper);
+      padding-bottom: 77px;   /* místo pro lištu se Zavolat na mobilu */
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
       -webkit-font-smoothing: antialiased;
-      -webkit-text-size-adjust: 100%;
     }
+    h1, h2, h3, p, dl, dd { margin: 0; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
-    h1, h2, h3 {
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: -.03em;
-      line-height: 1.05;
-    }
-    p, ol, ul { margin: 0; }
-
-    ::selection { background: var(--navy); color: #fff; }
-    :focus-visible { outline: 2px solid #5b9dff; outline-offset: 3px; }
-
-    /* Obsah je vycentrovaný a nejvýš 1200 px široký */
-    .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Malý popisek nad nadpisem (SLUŽBY, POSTUP…) */
-    .label {
-      margin-bottom: 16px;
-      font-size: .8125rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* Čárová ikonka (špendlík u adresy) */
-    .icon {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* ========== 2. Hlavička ========== */
-    .site-header {
-      background: var(--navy);
-      color: #fff;
-    }
-    .header-inner {
+    /* ========== 2. Horní lišta ========== */
+    .bar { border-bottom: 1px solid var(--text); background: var(--bg); }
+    .bar .wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      height: 64px;
+      height: 52px;
     }
-    .brand {
-      font-size: 1.125rem;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      white-space: nowrap;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    /* Adresa = odkaz na navigaci do servisu */
-    .header-address {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 0;
-      color: var(--on-navy);
-      font-size: .9375rem;
-      font-weight: 500;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color .2s ease;
-    }
-    .header-address:hover { color: #fff; }
-    .header-address svg { width: 16px; height: 16px; flex: none; }
-    .header-address .city { display: none; }   /* „, Praha 4" až na počítači */
-    /* Telefon v hlavičce – jen na počítači (na mobilu je tlačítko dole) */
-    .header-call { display: none; }
+    .name { font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+    .bar-right { display: flex; align-items: center; gap: 20px; font-size: 14px; }
+    .addr { text-decoration: none; }
+    .addr:hover { text-decoration: underline; }
+    .bar-call { display: none; }   /* na mobilu je Zavolat dole na obrazovce */
 
     /* ========== 3. Úvod ========== */
-    .hero {
-      background:
-        radial-gradient(900px 500px at 90% -10%, rgba(70, 130, 220, .18), transparent 70%),
-        var(--navy);
-      color: #fff;
-      padding: 40px 0 72px;
+    .hero { padding: 72px 0 112px; text-align: center; }
+    .eyebrow { font-size: 17px; font-weight: 600; }
+    h1 {
+      margin-top: 12px;
+      font-size: clamp(44px, 12vw, 96px);
+      font-weight: 800;
+      line-height: .98;
+      letter-spacing: -.04em;
     }
-    .hero .label { color: var(--on-navy-muted); }
-    /* Na mobilu je popisek schválně na dvou řádcích, na počítači na jednom */
-    .hero .label .sep { display: none; }
-    .hero h1 {
-      font-size: clamp(2.5rem, 10.5vw, 6.5rem);
-      letter-spacing: -.045em;
-      line-height: 1;
-    }
-    .hero h1 span { color: var(--on-navy-muted); }
     .lead {
-      max-width: 34rem;
-      margin-top: 24px;
-      font-size: 1.1875rem;
-      line-height: 1.55;
-      color: var(--on-navy);
+      max-width: 26em;
+      margin: 22px auto 0;
+      font-size: clamp(19px, 2.6vw, 24px);
+      line-height: 1.4;
     }
 
-    /* Tlačítko Zavolat – na mobilu přilepené dole, na počítači v úvodu */
-    .call-btn {
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      z-index: 40;
-      display: flex;
-      align-items: center;
+    /* Tlačítko Zavolat – jediná plná černá plocha */
+    .call {
+      display: inline-flex;
       justify-content: center;
-      gap: 10px;
-      min-height: 56px;
-      padding: 0 28px;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 30px;
       border-radius: 999px;
-      background: var(--accent);
-      color: var(--navy);
-      font-size: 1.0625rem;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 17px;
       font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 12px 32px -10px rgba(8, 26, 51, .55);
-      transition: background-color .2s ease, scale .2s var(--ease);
     }
-    .call-btn:hover { background: var(--accent-hover); }
-    .call-btn:active { scale: .98; }
-    .call-btn svg { width: 20px; height: 20px; flex: none; fill: currentColor; }
-    .call-btn .num { font-weight: 500; }
+    .call:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .hero .call { display: none; margin-top: 36px; }   /* na mobilu je v liště dole */
 
-    /* ========== 4. Sekce obecně ========== */
-    .section { padding: 80px 0; }
-    .section--tint { background: var(--paper-2); }
-    .section-title { font-size: clamp(2rem, 7vw, 3.5rem); }
-    /* Na mobilu je obsah pod nadpisem, na počítači vedle něj (blok 10) */
-    .split > .section-head + * { margin-top: 40px; }
+    /* Lišta se Zavolat přilepená dole (jen mobil) */
+    .callbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-top: 1px solid var(--text);
+    }
+    .callbar .call { display: flex; }
 
-    /* ========== 5. Služby – přehledný číslovaný seznam ========== */
+    /* ========== 4. Sekce ========== */
+    .section { padding: 112px 0 0; text-align: center; }
+    h2 {
+      font-size: clamp(34px, 7vw, 56px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -.04em;
+    }
+
+    /* Služby */
     .services {
       list-style: none;
+      max-width: 34em;
+      margin: 64px auto 0;
       padding: 0;
-      border-top: 1px solid var(--hair);
-    }
-    .service {
       display: grid;
-      grid-template-columns: 2.5rem minmax(0, 1fr);
-      column-gap: 12px;
-      row-gap: 6px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--hair);
+      gap: 48px;
     }
-    .service-num {
-      grid-row: span 2;
-      padding-top: 3px;
-      font-size: .875rem;
-      font-weight: 600;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-    }
-    .service h3 {
-      font-size: 1.3125rem;
-      line-height: 1.25;
-      letter-spacing: -.02em;
-    }
-    .service p { color: var(--muted); }
+    .services h3 { font-size: 24px; font-weight: 700; letter-spacing: -.025em; }
+    .services p { margin-top: 6px; font-size: 19px; }
 
-    /* ========== 6. Jak to probíhá ========== */
+    /* Jak to probíhá */
     .steps {
       list-style: none;
-      margin-top: 48px;
+      margin: 64px 0 0;
       padding: 0;
       display: grid;
-      gap: 40px;
+      gap: 48px;
     }
-    /* Tenká čára nad krokem ukazuje, jak daleko v postupu jste (1/3, 2/3, 3/3) */
-    .step-bar {
-      height: 2px;
-      margin-bottom: 24px;
-      background: var(--hair);
-    }
-    .step-bar span {
+    .steps b {
       display: block;
-      width: var(--p);
-      height: 100%;
-      background: var(--navy);
-      transform-origin: left;
-    }
-    .step-count {
-      display: block;
-      margin-bottom: 8px;
-      font-size: .875rem;
-      font-weight: 600;
-      color: var(--muted);
-    }
-    .step h3 {
-      font-size: 1.5rem;
-      letter-spacing: -.02em;
-    }
-    .step p {
-      margin-top: 8px;
-      color: var(--muted);
-    }
-    .step a {
-      color: var(--ink);
-      font-weight: 600;
-      white-space: nowrap;
-      text-underline-offset: 3px;
-    }
-
-    /* ========== 7. Zástupné texty [DOPLNIT] ========== */
-    .placeholder {
-      display: inline-block;
-      padding: 16px 20px;
-      border: 1.5px dashed #9aa7bb;
-      border-radius: 12px;
-      background: var(--paper);
-      color: #3a475c;
-      font-weight: 600;
-    }
-    .placeholder--dark {
-      background: transparent;
-      border-color: rgba(255, 255, 255, .35);
-      color: #fff;
-    }
-
-    /* ========== 8. Kontakt ========== */
-    .contact {
-      background: var(--navy);
-      color: #fff;
-      padding: 80px 0;
-    }
-    .contact .label,
-    .contact .section-title { color: var(--on-navy-muted); }
-    /* Velké telefonní číslo – klepnutím se rovnou volá */
-    .contact-phone {
-      display: inline-block;
-      margin-top: 12px;
-      font-size: clamp(3rem, 13vw, 7.5rem);
-      font-weight: 700;
-      letter-spacing: -.045em;
+      font-size: 56px;
+      font-weight: 800;
       line-height: 1;
-      color: #fff;
+      letter-spacing: -.04em;
+    }
+    .steps p { max-width: 16em; margin: 14px auto 0; font-size: 21px; line-height: 1.35; }
+    .steps a { white-space: nowrap; text-underline-offset: 3px; }
+
+    /* Zástupný text – před spuštěním webu se nahradí skutečným obsahem */
+    .todo {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 18px;
+      border: 1px dashed var(--text);
+      font-weight: 600;
+    }
+
+    /* ========== 5. Kontakt ========== */
+    .phone {
+      display: inline-block;
+      margin-top: 40px;
+      font-size: clamp(48px, 13vw, 88px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.04em;
       text-decoration: none;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
     }
-    .contact-phone:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 3px;
-      text-underline-offset: .12em;
-    }
-    .contact-grid {
+    .phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+    .phone-label { margin-top: 10px; font-weight: 600; }
+    .details {
       display: grid;
       gap: 32px;
-      margin-top: 56px;
-      padding-top: 40px;
-      border-top: 1px solid var(--on-navy-hair);
+      max-width: 760px;
+      margin: 72px auto 0;
+      padding-top: 48px;
+      border-top: 1px solid var(--text);
     }
-    .contact-label {
-      margin-bottom: 8px;
-      font-size: .8125rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--on-navy-muted);
-    }
-    .contact-link {
-      color: #fff;
-      font-size: 1.25rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .contact-link:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    address {
-      font-style: normal;
-      color: var(--on-navy);
-    }
-    /* Vedlejší tlačítko Navigovat – jen obrys, aby nekonkurovalo Zavolat */
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 48px;
-      margin-top: 16px;
-      padding: 0 22px;
-      border: 1px solid rgba(255, 255, 255, .35);
-      border-radius: 999px;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background-color .2s ease, border-color .2s ease;
-    }
-    .nav-btn:hover {
-      background: rgba(255, 255, 255, .08);
-      border-color: #fff;
-    }
-    .nav-btn .arrow { transition: translate .3s var(--ease); }
-    .nav-btn:hover .arrow { translate: 3px 0; }
+    .details dt { font-size: 14px; font-weight: 700; }
+    .details dd { margin-top: 4px; font-size: 21px; line-height: 1.4; }
+    .details dd a { text-decoration: none; }
+    .details dd a:hover { text-decoration: underline; }
+    .details .nav { display: inline-block; margin-top: 6px; font-size: 17px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .details .todo { margin-top: 0; font-size: 17px; }
 
-    /* ========== 9. Patička ========== */
-    .site-footer {
-      background: var(--navy);
-      color: var(--on-navy-muted);
-      font-size: .875rem;
-    }
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 8px 24px;
-      padding: 28px 0 112px;   /* dole místo, aby text nezakrylo tlačítko Zavolat */
-      border-top: 1px solid var(--on-navy-hair);
-    }
-    .footer-credit { font-size: .8125rem; }
-
-    /* ========== 10. Větší obrazovky ========== */
-    @media (min-width: 640px) {
-      .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* ========== 6. Patička ========== */
+    .footer {
+      margin-top: 128px;
+      padding: 28px 22px;
+      border-top: 1px solid var(--text);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
     }
 
-    /* Od 900 px (počítač): Zavolat je v úvodu, hlavička jezdí nahoře */
+    /* ========== 7. Počítač (od 900 px) ========== */
     @media (min-width: 900px) {
-      .wrap { padding: 0 40px; }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        transition: box-shadow .3s ease;
-      }
-      .site-header.is-scrolled {
-        box-shadow: 0 1px 0 var(--on-navy-hair), 0 12px 32px -16px rgba(0, 0, 0, .5);
-      }
-      .header-inner { height: 72px; }
-      .header-address {
-        padding: 10px 14px;
-        border-radius: 999px;
-      }
-      .header-address .city { display: inline; }
-      .header-call {
+      body { padding-bottom: 0; }
+      .bar { position: sticky; top: 0; z-index: 10; }
+      .bar-call {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 10px 18px;
+        min-height: 30px;
+        padding: 0 14px;
         border-radius: 999px;
-        color: #fff;
-        font-size: .9375rem;
-        font-weight: 600;
+        background: var(--text);
+        color: var(--bg);
+        font-size: 13px;
+        font-weight: 700;
         text-decoration: none;
-        transition: background-color .35s var(--ease), color .35s var(--ease);
       }
-      .header-call svg { width: 16px; height: 16px; fill: currentColor; }
-      .header-call:hover { background: rgba(255, 255, 255, .08); }
-      /* Když tlačítko z úvodu odjede z obrazovky, číslo v hlavičce se změní na žluté tlačítko */
-      .is-scrolled .header-call {
-        background: var(--accent);
-        color: var(--navy);
-      }
-      .is-scrolled .header-call:hover { background: var(--accent-hover); }
-
-      .hero { padding: 128px 0 136px; }
-      .hero .label .sep { display: inline; }
-      .br-mobile { display: none; }
-      .lead { margin-top: 32px; }
-      .call-btn {
-        position: static;
-        display: inline-flex;
-        min-height: 60px;
-        margin-top: 40px;
-        box-shadow: none;
-      }
-
-      .section { padding: 136px 0; }
-      /* Nadpis vlevo (při scrollování zůstává na místě), obsah vpravo */
-      .split {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-        gap: 64px;
-        align-items: start;
-      }
-      .split > .section-head {
-        position: sticky;
-        top: 136px;
-      }
-      .split > .section-head + * { margin-top: 0; }
-
-      .service {
-        grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 1.2fr);
-        column-gap: 24px;
-        align-items: baseline;
-        padding: 32px 0;
-      }
-      .service-num {
-        grid-row: auto;
-        padding-top: 0;
-      }
-      .service h3 { transition: translate .5s var(--ease); }
-      .service:hover h3 { translate: 6px 0; }
-
-      .steps {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 48px;
-        margin-top: 64px;
-      }
-
-      .contact { padding: 136px 0; }
-      .contact-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        margin-top: 72px;
-      }
-      .footer-inner { padding-bottom: 28px; }
-    }
-
-    /* ========== 11. Pohyb ==========
-       Jen pár jemných pohybů. Kdo má v zařízení zapnuté „omezit pohyb", neuvidí nic z toho. */
-    @media (prefers-reduced-motion: no-preference) {
-      /* Úvod se po načtení plynule poskládá; --d je pořadí prvku */
-      .enter {
-        animation: enter 1s var(--ease) both;
-        animation-delay: calc(var(--d, 0) * 90ms + 60ms);
-      }
-      @keyframes enter { from { opacity: 0; translate: 0 18px; } }
-
-      /* Sekce se objeví, až k nim dojedete (třídu is-visible přidává skript dole) */
-      .js .reveal {
-        opacity: 0;
-        translate: 0 20px;
-        transition: opacity .9s var(--ease), translate .9s var(--ease);
-      }
-      .js .reveal.is-visible {
-        opacity: 1;
-        translate: 0 0;
-      }
-
-      /* Čára nad krokem se dokreslí */
-      .js .step-bar span {
-        scale: 0 1;
-        transition: scale 1.4s var(--ease) .25s;
-      }
-      .js .is-visible .step-bar span { scale: 1 1; }
+      .callbar { display: none; }
+      .hero { padding: 152px 0 168px; }
+      .hero .call { display: inline-flex; }
+      .section { padding-top: 168px; }
+      .steps { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+      .details { grid-template-columns: 1fr 1fr; gap: 48px 64px; }
+      .footer { margin-top: 168px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========== HLAVIČKA ========== -->
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <span class="brand">PK Car Servis</span>
-      <div class="header-right">
-        <a class="header-address"
-           href="https://www.google.com/maps/dir/?api=1&amp;destination=Na%20Str%C5%BEi%201683%2F40%2C%20140%2000%20Praha%204"
-           target="_blank" rel="noopener"
-           aria-label="Navigovat: Na Strži 1683/40, Praha 4">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.4-6-11a6 6 0 0 1 12 0c0 5.6-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></svg>
-          <span>Na Strži 1683/40<span class="city">, Praha&nbsp;4</span></span>
-        </a>
-        <a class="header-call" href="tel:+420602344424">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          602 344 424
-        </a>
+  <!-- ========== HORNÍ LIŠTA ========== -->
+  <header class="bar">
+    <div class="wrap">
+      <span class="name">PK Car Servis</span>
+      <div class="bar-right">
+        <a class="addr" href="https://www.google.com/maps/dir/?api=1&amp;destination=Na%20Str%C5%BEi%201683%2F40%2C%20140%2000%20Praha%204" target="_blank" rel="noopener">Na Strži 1683/40, Praha&nbsp;4</a>
+        <a class="bar-call" href="tel:+420602344424">Zavolat</a>
       </div>
     </div>
   </header>
@@ -524,189 +226,74 @@
     <!-- ========== ÚVOD ========== -->
     <section class="hero">
       <div class="wrap">
-        <p class="label enter" style="--d:0">Autoservis · Praha&nbsp;4<span class="sep"> · </span><br class="br-mobile">Krč, Pankrác</p>
-        <h1 class="enter" style="--d:1">Auto v&nbsp;pořádku,<br><span>vy v&nbsp;klidu.</span></h1>
-        <p class="lead enter" style="--d:2">Servis, příprava na STK, pneuservis i&nbsp;odtah na jednom místě. Stačí zavolat.</p>
-        <a class="call-btn enter" style="--d:3" href="tel:+420602344424">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          Zavolat <span class="num">602 344 424</span>
-        </a>
+        <p class="eyebrow">Autoservis Praha 4 – Krč, Pankrác</p>
+        <h1>Auto v&nbsp;pořádku,<br>vy v&nbsp;klidu.</h1>
+        <p class="lead">Servis, příprava na STK, pneuservis i&nbsp;odtah na jednom místě. Stačí zavolat.</p>
+        <a class="call" href="tel:+420602344424">Zavolat 602 344 424</a>
       </div>
     </section>
 
     <!-- ========== SLUŽBY ========== -->
     <section class="section">
-      <div class="wrap split">
-        <div class="section-head reveal">
-          <p class="label">Služby</p>
-          <h2 class="section-title">S&nbsp;čím vám pomůžeme</h2>
-        </div>
-        <ol class="services">
-          <li class="service reveal">
-            <span class="service-num">01</span>
-            <h3>Servis a&nbsp;příprava na STK</h3>
-            <p>Na technickou pojedete v&nbsp;klidu. Auto předem projdeme a&nbsp;připravíme.</p>
-          </li>
-          <li class="service reveal">
-            <span class="service-num">02</span>
-            <h3>Pneuservis</h3>
-            <p>Přezuto máte za pár minut, včetně kontroly vyvážení a&nbsp;tlaku. Zvládneme i&nbsp;dodávky a&nbsp;runflat pneumatiky.</p>
-          </li>
-          <li class="service reveal">
-            <span class="service-num">03</span>
-            <h3>Klimatizace</h3>
-            <p>Klimatizace zase chladí, i&nbsp;v&nbsp;létě v&nbsp;zácpě.</p>
-          </li>
-          <li class="service reveal">
-            <span class="service-num">04</span>
-            <h3>Odtahová služba</h3>
-            <p>Auto nejede? Zavolejte kdykoli a&nbsp;odtah zajistíme po celé ČR. Při převozu je auto pojištěné.</p>
-          </li>
-          <li class="service reveal">
-            <span class="service-num">05</span>
-            <h3>Firemní vozy</h3>
-            <p>Se smlouvou mají vaše auta přednost v&nbsp;opravě. STK ohlídáme a&nbsp;zařídíme za vás. Náhradní vůz je samozřejmost.</p>
-          </li>
-          <li class="service reveal">
-            <span class="service-num">06</span>
-            <h3>Autofólie</h3>
-            <p>Auto v&nbsp;nové barvě nebo s&nbsp;reklamou vaší firmy. Polepy zajistíme pro firmy i&nbsp;soukromé majitele.</p>
-          </li>
-          <li class="service reveal">
-            <span class="service-num">07</span>
-            <h3>Náhradní díly</h3>
-            <p>Díly nemusíte shánět sami. Seženeme je téměř na každou značku, i&nbsp;na americká auta.</p>
-          </li>
-        </ol>
+      <div class="wrap">
+        <h2>Co pro vás uděláme.</h2>
+        <ul class="services">
+          <li><h3>Servis a&nbsp;příprava na STK</h3><p>Na technickou pojedete v&nbsp;klidu. Auto předem projdeme a&nbsp;připravíme.</p></li>
+          <li><h3>Pneuservis</h3><p>Přezuto máte za pár minut, včetně kontroly vyvážení a&nbsp;tlaku. Zvládneme i&nbsp;dodávky a&nbsp;runflat pneumatiky.</p></li>
+          <li><h3>Klimatizace</h3><p>Klimatizace zase chladí, i&nbsp;v&nbsp;létě v&nbsp;zácpě.</p></li>
+          <li><h3>Odtahová služba</h3><p>Auto nejede? Zavolejte kdykoli a&nbsp;odtah zajistíme po celé ČR. Při převozu je auto pojištěné.</p></li>
+          <li><h3>Firemní vozy</h3><p>Se smlouvou mají vaše auta přednost v&nbsp;opravě. STK ohlídáme a&nbsp;zařídíme za vás. Náhradní vůz je samozřejmost.</p></li>
+          <li><h3>Autofólie</h3><p>Auto v&nbsp;nové barvě nebo s&nbsp;reklamou vaší firmy. Polepy zajistíme pro firmy i&nbsp;soukromé majitele.</p></li>
+          <li><h3>Náhradní díly</h3><p>Díly nemusíte shánět sami. Seženeme je téměř na každou značku, i&nbsp;na americká auta.</p></li>
+        </ul>
       </div>
     </section>
 
     <!-- ========== JAK TO PROBÍHÁ ========== -->
-    <section class="section section--tint">
+    <section class="section">
       <div class="wrap">
-        <div class="section-head reveal">
-          <p class="label">Postup</p>
-          <h2 class="section-title">Jak to probíhá</h2>
-        </div>
+        <h2>Jak to probíhá.</h2>
         <ol class="steps">
-          <li class="step reveal">
-            <div class="step-bar"><span style="--p:33.333%"></span></div>
-            <span class="step-count">Krok 1</span>
-            <h3>Zavoláte</h3>
-            <p>Zavolejte na <a href="tel:+420602344424">602 344 424</a> a&nbsp;řekněte nám, co auto potřebuje.</p>
-          </li>
-          <li class="step reveal">
-            <div class="step-bar"><span style="--p:66.666%"></span></div>
-            <span class="step-count">Krok 2</span>
-            <h3>Domluvíme termín</h3>
-            <p>Najdeme vhodný termín a&nbsp;domluvíme se na ceně.</p>
-          </li>
-          <li class="step reveal">
-            <div class="step-bar"><span style="--p:100%"></span></div>
-            <span class="step-count">Krok 3</span>
-            <h3>Auto je připravené</h3>
-            <p>Vyzvednete si hotové auto a&nbsp;můžete jet.</p>
-          </li>
+          <li><b>1</b><p>Zavoláte na <a href="tel:+420602344424">602 344 424</a> a&nbsp;řeknete nám, co auto potřebuje.</p></li>
+          <li><b>2</b><p>Najdeme vhodný termín a&nbsp;domluvíme se na ceně.</p></li>
+          <li><b>3</b><p>Vyzvednete si hotové auto a&nbsp;můžete jet.</p></li>
         </ol>
       </div>
     </section>
 
     <!-- ========== RECENZE ========== -->
     <section class="section">
-      <div class="wrap split">
-        <div class="section-head reveal">
-          <p class="label">Reference</p>
-          <h2 class="section-title">Co říkají zákazníci</h2>
-        </div>
-        <div class="reveal">
-          <p class="placeholder">[DOPLNIT skutečné recenze se souhlasem firmy]</p>
-        </div>
+      <div class="wrap">
+        <h2>Co říkají zákazníci.</h2>
+        <p class="todo">[DOPLNIT skutečné recenze se souhlasem firmy]</p>
       </div>
     </section>
 
     <!-- ========== KONTAKT A OTEVÍRACÍ DOBA ========== -->
-    <section class="contact">
+    <section class="section">
       <div class="wrap">
-        <div class="reveal">
-          <p class="label">Kontakt</p>
-          <h2 class="section-title">Zavolejte do servisu</h2>
-          <a class="contact-phone" href="tel:+420602344424">602 344 424</a>
-        </div>
-        <div class="contact-grid">
-          <div class="reveal">
-            <p class="contact-label">Kancelář</p>
-            <a class="contact-link" href="tel:+420722152152">722 152 152</a>
-          </div>
-          <div class="reveal">
-            <p class="contact-label">E-mail</p>
-            <a class="contact-link" href="mailto:info@pkcarservis.cz">info@pkcarservis.cz</a>
-          </div>
-          <div class="reveal">
-            <p class="contact-label">Adresa</p>
-            <address>
-              PK Car Servis s.r.o.<br>
-              Na Strži 1683/40<br>
-              140&nbsp;00 Praha&nbsp;4
-            </address>
-            <a class="nav-btn"
-               href="https://www.google.com/maps/dir/?api=1&amp;destination=Na%20Str%C5%BEi%201683%2F40%2C%20140%2000%20Praha%204"
-               target="_blank" rel="noopener">Navigovat <span class="arrow" aria-hidden="true">→</span></a>
-          </div>
-          <div class="reveal">
-            <p class="contact-label">Otevírací doba</p>
-            <p class="placeholder placeholder--dark">[DOPLNIT otevírací dobu]</p>
-          </div>
-        </div>
+        <h2>Kontakt.</h2>
+        <a class="phone" href="tel:+420602344424">602 344 424</a>
+        <p class="phone-label">Servis</p>
+        <dl class="details">
+          <div><dt>Kancelář</dt><dd><a href="tel:+420722152152">722 152 152</a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:info@pkcarservis.cz">info@pkcarservis.cz</a></dd></div>
+          <div><dt>Adresa</dt><dd>Na Strži 1683/40, 140&nbsp;00 Praha&nbsp;4<br><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=Na%20Str%C5%BEi%201683%2F40%2C%20140%2000%20Praha%204" target="_blank" rel="noopener">Navigovat</a></dd></div>
+          <div><dt>Otevírací doba</dt><dd><span class="todo">[DOPLNIT otevírací dobu]</span></dd></div>
+        </dl>
       </div>
     </section>
 
   </main>
 
   <!-- ========== PATIČKA ========== -->
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-inner">
-        <p>PK Car Servis s.r.o. · Na Strži 1683/40, 140&nbsp;00 Praha&nbsp;4 · IČO 25675427</p>
-        <p class="footer-credit">Koncept webu – Richard Metzner</p>
-      </div>
-    </div>
+  <footer class="footer">
+    <p>PK Car Servis s.r.o. · Na Strži 1683/40, 140&nbsp;00 Praha&nbsp;4 · IČO 25675427</p>
+    <p>Koncept webu – Richard Metzner</p>
   </footer>
 
-  <!-- ========== SKRIPT ==========
-       Dvě drobnosti: plynulé objevování sekcí a „chytrá" hlavička.
-       Bez skriptu web funguje dál, jen bez nich. -->
-  <script>
-    (function () {
-      var revealItems = document.querySelectorAll('.reveal');
-
-      // Starší prohlížeč: všechno rovnou ukázat
-      if (!('IntersectionObserver' in window)) {
-        revealItems.forEach(function (el) { el.classList.add('is-visible'); });
-        return;
-      }
-
-      // 1) Když se prvek objeví na obrazovce, dostane třídu is-visible.
-      //    Prvky, které se objeví naráz, naskočí kousek po sobě (po 70 ms).
-      var revealObserver = new IntersectionObserver(function (entries) {
-        var order = 0;
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.style.transitionDelay = (order++ * 70) + 'ms';
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        });
-      }, { rootMargin: '0px 0px -8% 0px' });
-      revealItems.forEach(function (el) { revealObserver.observe(el); });
-
-      // 2) Na počítači: jakmile tlačítko Zavolat z úvodu odjede z obrazovky,
-      //    hlavička dostane stín a číslo v ní se změní na žluté tlačítko.
-      var header = document.querySelector('.site-header');
-      var heroCall = document.querySelector('.hero .call-btn');
-      new IntersectionObserver(function (entries) {
-        header.classList.toggle('is-scrolled', !entries[0].isIntersecting);
-      }, { rootMargin: '-72px 0px 0px 0px' }).observe(heroCall);
-    })();
-  </script>
+  <!-- Zavolat přilepené dole – jen na mobilu -->
+  <div class="callbar"><a class="call" href="tel:+420602344424">Zavolat 602 344 424</a></div>
 
 </body>
 </html>
